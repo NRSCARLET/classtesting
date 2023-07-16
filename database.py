@@ -55,9 +55,9 @@ while print_data is True:
     u = u.replace("'", "")
     u = u.lower()
     print(f"Your name is {u.title()}, You are {user_desc[u].age} years old, and your favourite hobby is {user_desc[u].hobby}")
-    data = input("Would you like to see another users data? (Y/N)")
+    print("Would you like to see another users data? (Y/N)")
+    data = input()
     if data == "Y":
-        clear(0.5)
         print_data = True
     elif data == "N":
         print("Okay, thank you for letting us steal your information:)")
@@ -65,4 +65,5 @@ while print_data is True:
         break
     else:
         print("Please enter Y/N")
-        print_data = True
+        print("Would you like to see another users data? (Y/N)\n")
+        data = input()
