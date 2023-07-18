@@ -15,7 +15,7 @@ def wiblywobly():
 questions = True
 print_data = True
 user_desc = {}
-
+number_of_users = 0
 """Represents user data to store it as a variable."""
 class Users:  
     def __init__(self, name, age, hobby):
@@ -40,6 +40,7 @@ while questions is True:
 
     if extra_user == "Y":
         print("Loading new user interface...")
+        number_of_users =+1
         sleep(0.5)
         clear()
         questions = True
@@ -54,20 +55,27 @@ while print_data is True:
     u = input()
     u = u.replace("'", "")
     u = u.lower()
-    print(
-        f"Your name is {u.title()}, You are {user_desc[u].age} years old, and your favourite hobby is {user_desc[u].hobby}"
+    if = user_desc.keys():
+    print(f"Your name is {u.title()}, You are {user_desc[u].age} years old, and your favourite hobby is {user_desc[u].hobby}"
     )
-    print("Would you like to see another users data? (Y/N)")
-    data = input()
-    if data == "Y":
-        print_data = True
-    elif data == "N":
-        print("Okay, thank you for letting us steal your information:)")
+    if number_of_users >= 1:
+        print("Would you like to see another users data? (Y/N)")
+        data = input()
+        if data == "Y":
+            print_data = True
+        elif data == "N":
+            print("Okay, thank you for letting us steal your information:)")
+            print_data = False
+            sleep(1)
+            clear()
+            wiblywobly()
+        else:
+            print("Please enter Y/N")
+            print("Would you like to see another users data? (Y/N)\n")
+            data = input()
+    else:
         print_data = False
-        sleep(0.5)
+        print("Okay, thank you for letting us steal your information:)")
+        sleep(1)
         clear()
         wiblywobly()
-    else:
-        print("Please enter Y/N")
-        print("Would you like to see another users data? (Y/N)\n")
-        data = input()
