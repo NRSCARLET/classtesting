@@ -3,26 +3,37 @@ from os import system
 from time import sleep
 
 
-def clear():  
+def clear():
     """This definition is to add a mechanism to clear the screan."""
     if name == 'nt':
         _ = system('cls')
     else:
         _ = system('clear')
 
+
 def wiblywobly():
-    print("-------------------------                                                               SCAMMER GOT SCAMMED LOSER                                                              ---------------------------")
+    print(
+        "-------------------------                                                               SCAMMER GOT SCAMMED LOSER                                                              ---------------------------"
+    )
+
+
 questions = True
 print_data = True
+age = False
 user_desc = {}
 number_of_users = 0
 """Represents user data to store it as a variable."""
-class Users:  
+
+
+class Users:
+
     def __init__(self, name, age, hobby):
-        """__init__ allows me to collect information as variables so I can call them back later in the code.""" 
+        """__init__ allows me to collect information as variables so I can call them back later in the code."""
         self.name = name
         self.age = age
         self.hobby = hobby
+
+
 def data_print():
     while print_data is True:
         print("Whos user data would you like to see? (Input users name)")
@@ -30,13 +41,16 @@ def data_print():
         u = u.replace("'", "")
         u = u.lower()
         try:
-            print(f"Your name is {u.title()}, You are {user_desc[u].age} years old, and your favourite hobby is {user_desc[u].hobby}")
+            print(
+                f"Your name is {u.title()}, You are {user_desc[u].age} years old, and your favourite hobby is {user_desc[u].hobby}"
+            )
             user_num()
         except KeyError:
             print("Please enter a name you've put into our database")
             sleep(1)
             clear()
             data_print()
+
 
 def user_num():
     if number_of_users >= 1:
@@ -63,29 +77,35 @@ def user_num():
 while questions is True:
     print("Tell me about yourself")
     name = input("What is your name?\n").lower()
-    age = (input("How old are you?\n"))
-    try:
-        hobby = input("What is your favourite hobby?\n").lower()
-        user_desc[name] = Users(name, age, hobby)
-        print("Is there more user information you would like us to store in our database? (Y/N)")
+    age = True
+    while age is True:
+        try:
+            age = int(input("How old are you?\n"))
+        except ValueError:
+            print("Please enter a number")
+            age = True
+    hobby = input("What is your favourite hobby?\n").lower()
+    user_desc[name] = Users(name, age, hobby)
+    print(
+        "Is there more user information you would like us to store in our database? (Y/N)"
+    )
+    extra_user = input()
+    while extra_user not in ("Y", "N"):
+        print("Please enter Y/N")
+        print(
+            "Is there more user information you would like us to store in our database (Y/N)"
+        )
         extra_user = input()
-        while extra_user not in ("Y", "N"):
-            print("Please enter Y/N")
-            print("Is there more user information you would like us to store in our database (Y/N)")
-            extra_user = input()
-    
-        if extra_user == "Y":
-            print("Loading new user interface...")
-            number_of_users =+1
-            sleep(0.5)
-            clear()
-            questions = True
-        elif extra_user == "N":
-            print("Okay, thank you for inputting your data...")
-            sleep(0.7)
-            clear()
-            print(user_desc.keys())
-            data_print()
-    except ValueError:
-        print("Please enter a number")
+
+    if extra_user == "Y":
+        print("Loading new user interface...")
+        number_of_users = +1
+        sleep(0.5)
+        clear()
         questions = True
+    elif extra_user == "N":
+        print("Okay, thank you for inputting your data...")
+        sleep(0.7)
+        clear()
+        print(user_desc.keys())
+        data_print()
